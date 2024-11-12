@@ -4,14 +4,27 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <h1>Welcome to <span class="text-gradient">Weichselmarken</span></h1>
-  <h1>Südafrika</h1>
-  <h2>
+  <h1 id="title">Welcome to <span class="text-gradient">Weichselmarken</span></h1>
+  <h1>Übersee</h1>
+  <h2>Südafrika</h2>
+  <h3>
     <a href="/COH/">Kap der Guten Hoffnung</a>.
-  </h2>
+  </h3>
   <h1>Deutschland nach 1945</h1>
   <h2>
     <a href="/BIZO/">Amerikanische und Britische Zone</a>
     <h3><a href="/am_de_spezial/">AM-Post Spezial</a></h3>
   </h2>
 </Layout>
+
+<style>
+  h2 {
+    margin-left: 10px;
+  }
+  h3 {
+    margin-left: 20px;
+  }
+  #title {
+    text-align: center;
+  }
+</style>
