@@ -1,23 +1,47 @@
 ---
 
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<style>
-	body {
-		font-family: Arial, Helvetica, sans-serif;
-		margin: 30px;
-	}
-</style>
-<body>
-	<nav>
-		<a href="/">Home</a>
-	  </nav>
-    <slot/>
-</body>
+  </head>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 30px;
+    }
+  </style>
+  <body>
+    <nav>
+      <label for="gestempelt"></label>
+      <input type="checkbox" name="gestempelt" id="gestempelt" checked />
+      <a href="/">Home</a>
+    </nav>
+    <slot />
+    <script>
+      let pf = true;
+      let gestempelt_checked = document.getElementById("gestempelt");
+      gestempelt_checked.addEventListener("change", () => {
+        pf = !pf;
+        update();
+      });
+
+      function update() {
+        let list_items = document.getElementsByTagName("li");
+        for (let list_item of list_items) {
+          if (list_item.innerText.includes("o") && pf == true) {
+            list_item.style.display = "none";
+          } else {
+            list_item.style.display = "block";
+          }
+        }
+      }
+
+      // Array.from(list_items).filter((x)=> console.log(x.innerText.includes("o")))
+    </script>
+  </body>
 </html>
