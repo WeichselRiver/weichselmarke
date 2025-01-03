@@ -1,0 +1,19 @@
+---
+import data from "./USA.json"
+function get_album(d) {let mn = Object.keys(d); return d[mn]["Album"]}
+function get_besitz(d) {let mn = Object.keys(d); return d[mn]["besitz"]}
+
+
+---
+<h1>USA</h1>
+
+<table>
+    <tr>
+      <th>MichNr</th>
+      <th>Album</th>
+      <th>Besitz</th>
+    </tr>
+    {data.map( (x) => <tr><td>{Object.keys(x)}</td><td>{get_album(x)}</td><td>{get_besitz(x)}</td></tr>)}
+    
+</table>
+<!-- {get_michnr(data[0])} -->
