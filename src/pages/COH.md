@@ -6,17 +6,18 @@ layout : ../layouts/Layout.astro
 
 ## Dreiecksmarken
 
+> > 1.  one
+>>
+>>     two
 
 
-|1|4|
-|---|---|
-
-
+1 
+- ○
 - (Iyd, o, geprüft)     1x
 - (Iyc, o, geprüft)     1x
 
 
-no >  ×× >  x > ○
+
 ----
 2 > - > - > 1+
 3 > - > - > 1+
