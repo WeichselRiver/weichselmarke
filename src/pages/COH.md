@@ -7,17 +7,15 @@ layout : ../layouts/Layout.astro
 ## Dreiecksmarken
 
 
-| no. | xx | x | o |
-| --- | --- | --- | ---|
-| 1 | ---|---|2+|
+
+|1|4|
+
 
 - (Iyd, o, geprüft)     1x
 - (Iyc, o, geprüft)     1x
 
-| no. | xx | x | o |
-| --- | --- | --- | ---|
-| 2 | ---|---|1+|
-| 3 | ---|---|1+|
 
->  ifr
->  >  67
+no >  ×× >  x > ○
+----
+2 > - > - > 1+
+3 > - > - > 1+
