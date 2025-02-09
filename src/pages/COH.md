@@ -1,7 +1,9 @@
 ---
 layout : ../layouts/Layout.astro
 ---
-# Cape of good Hope
+
+<? Cape of good Hope ?>
+
 ## Dreiecksmarken
 
 
@@ -13,6 +15,6 @@ layout : ../layouts/Layout.astro
 - (Iyc, o, geprüft)     1x
 
 | no. | xx | x | o |
-| .-- | --- | --- | ---|
+| --- | --- | --- | ---|
 | 2 | ---|---|1+|
 | 3 | ---|---|1+|
