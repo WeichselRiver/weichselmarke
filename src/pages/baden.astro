@@ -1,0 +1,15 @@
+---
+import json from "./baden.json"
+
+---
+
+<ul>
+    {
+      json.map((name) => (
+        <li>
+          <p class="name">{Object.keys(name)}</p>
+       
+        </li>
+      ))
+    }
+  </ul>
