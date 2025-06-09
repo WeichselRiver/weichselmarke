@@ -1,0 +1,7 @@
+---
+import Variante from "../components/Variante.astro"
+const { satz} = Astro.props;
+
+---
+<h2>#{satz.satzname}</h2>
+{satz.varianten.map((variante) => <Variante variante={variante}/>)}

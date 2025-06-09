@@ -1,0 +1,14 @@
+---
+const { marke } = Astro.props;
+
+---
+<p class:list={[ist]}>#{Object.keys(marke)}</p>
+
+<style>
+    .ist {
+        padding: 10px; border-style: solid; border-width: 1px;
+    }
+    .fehl {
+        background-color: aqua;
+    }
+</style>

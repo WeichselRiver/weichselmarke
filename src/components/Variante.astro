@@ -1,0 +1,10 @@
+---
+import Marke from "../components/Marke.astro"
+const { variante} = Astro.props;
+---
+
+<h3>{variante.variantenname}</h3>
+<div style="display: flex;">
+
+    {variante.marken.map((marke) => <Marke marke={marke}></Marke>)}
+</div>

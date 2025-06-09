@@ -2,6 +2,8 @@
 layout : ../layouts/Layout.astro
 ---
 
+
+
 # Plattenfehler
 ## 1
 - 1 I: 1x
