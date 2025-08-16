@@ -5,16 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weichselmarken</title>
     <style>
-        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Meine Sammelgebiete:</h1>
     <h2>Altdeutschland</h2>
-    <h3>Baden</h3>
+    <h3>Baden</h3> 
     <h3>Bayern</h3>
     <h2>Nachkriegsdeutschland</h2>
-    <h3>SBZ</h3>
+    <h3><a href="{{ url_for('sbz') }}">SBZ</a></h3>
     <h2>USA</h2>
     <h2>Südafrika</h2>
 </body>
