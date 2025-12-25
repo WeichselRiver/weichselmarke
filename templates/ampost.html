@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM-POST CSV</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; }
+        th { background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>AM-POST</h1>
+    <h2>Amerikanischer Druck</h2>
+    <p><a href="{{ url_for('index') }}">Back</a></p>
+    <div>
+        {{ data | safe }}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const table = document.querySelector('table');
+            if (!table) return;
+            const tbody = table.tBodies[0];
+            if (!tbody) return;
+            for (let r = 0; r < tbody.rows.length; r++) {
+                const row = tbody.rows[r];
+                for (let c = 1; c < row.cells.length; c++) {
+                    const cell = row.cells[c];
+                    // replace ** with x
+
+                    // build header texts once
+                    const headers = [];
+                    const headThs = table.querySelectorAll('thead th, tr th');
+                    headThs.forEach(th => headers.push(th.textContent.trim()));
+
+                    const headerText = headers[c] || '';
+                    const cellText = cell.textContent.trim();
+
+                    if (cellText === headerText) {
+                        cell.innerHTML = 'x';
+                    } else {
+                        // preserve previous ** -> x replacement if present
+                        cell.innerHTML = cell.innerHTML.replace(/\*\*/g, 'x');
+                    }
+                    const text = cell.textContent.trim();
+                    if (text === 'None') {
+                        cell.style.backgroundColor = '#f8d7da';
+                    } else if (text !== '') {
+                        cell.style.backgroundColor = '#d4edda';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
