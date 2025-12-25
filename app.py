@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import polars as pl
 
 app = Flask(__name__)
 
@@ -6,6 +7,14 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/gemeinschaftsausgaben")
+def gemeinschaftsausgaben():
+    # df = pl.read_csv("ampost.csv").group_by("Nr", maintain_order=True).agg(pl.col("variante"))
+    df = pl.read_csv("ampost.csv").pivot(values="variante", index="Nr", columns="variante")
+
+    return render_template("gemeinschaftsausgaben.html", data=df.to_pandas().to_html(index=False, escape=False), cols=df.columns)
+
 
 
 @app.route("/sbz")
@@ -102,4 +111,4 @@ def sbz():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
