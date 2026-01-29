@@ -90,6 +90,7 @@ def create_app() -> Flask:
     @app.route("/ampost")
     def ampost():
         df = load_ampost_df()
+        df = df.fill_null("")
         html = df.to_pandas().to_html(index=False, escape=False)
         return render_template("ampost.html", data=html, cols=df.columns)
 
