@@ -1,49 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SBZ</title>
-    <style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SBZ Overview</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --text-color: #1e293b;
+      --primary-color: #3b82f6;
+      --card-bg: #ffffff;
+      --section-bg: #ffffff;
+      --border-color: #cbd5e1;
+      --row-hover: #f1f5f9;
+
+      /* Status Colors */
+      --status-complete-bg: #dcfce7;
+      --status-complete-text: #166534;
+      --status-partial-bg: #e0f2fe;
+      --status-partial-text: #075985;
+      --status-missing-bg: #fee2e2;
+      --status-missing-text: #991b1b;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 40px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-link {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: bold;
+      margin-bottom: 30px;
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .back-link:hover {
+      transform: translateX(-5px);
+    }
+
+    .dashboard {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .section-header {
+      background-color: #f1f5f9;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 12px 24px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover {
+      background-color: var(--row-hover);
+    }
+
+    /* Status Badges */
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .badge-complete {
+      background-color: var(--status-complete-bg);
+      color: var(--status-complete-text);
+    }
+
+    .badge-partial {
+      background-color: var(--status-partial-bg);
+      color: var(--status-partial-text);
+    }
+
+    .badge-missing {
+      background-color: var(--status-missing-bg);
+      color: var(--status-missing-text);
+    }
+
+    .original-value {
+      font-family: monospace;
+      color: #64748b;
+      font-size: 0.9em;
+      margin-left: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        color: #333;
-        margin: 0;
         padding: 20px;
       }
-      h1 {
-        color: #2c3e50;
+
+      .section-header,
+      th,
+      td {
+        padding: 12px 16px;
       }
-      .highlight {
-        font-weight: bold;
-        background-color: #29a85c;
-      }
-      .gestempelt {
-        background-color: #12f334;
-      }
-      .fehlt {
-        background-color: #ee7213;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>SBZ (Sowjetische Besatzungszone)</h1>
-       {% for satz in saetze %}
-    <h2>{{ satz.name }}</h2>
-    <ul>   
-      {% for marke in satz.marken %}
-      <li
-        class="{% if '**' in marke.value and 'o' in marke.value %}highlight {% elif 'o' in marke.value or '**' in marke.value %} gestempelt {% else %}fehlt{% endif %}"
-      >
-        {{ marke.name }}: {{ marke.value }}
-      </li>
-      {% endfor %}
-    </ul>
+    }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>SBZ</h1>
+  <a href="{{ url_for('index') }}" class="back-link">← Back to Overview</a>
+
+  <!-- Statistics -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">{{ stats.complete_sets }} / {{ stats.total_sets }}</div>
+      <div class="stat-label">Complete Sets</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">{{ stats.complete_stamps }} / {{ stats.total_stamps }}</div>
+      <div class="stat-label">Stamps Collected</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">{{ stats.percent_stamps }}%</div>
+      <div class="stat-label">Completion</div>
+    </div>
+  </div>
+
+  <div class="dashboard">
+    {% for satz in saetze %}
+    <div class="section-card">
+      <div class="section-header">
+        <h2>{{ satz.name }}</h2>
+      </div>
+      <table>
+        <tbody>
+          {% for marke in satz.marken %}
+          <tr>
+            <td width="30%"><strong>{{ marke.name }}</strong></td>
+            <td>
+              {% if "**" in marke.value and "o" in marke.value %}
+              <span class="badge badge-complete">Complete</span>
+              {% elif "**" in marke.value or "o" in marke.value %}
+              <span class="badge badge-partial">Partial</span>
+              {% else %}
+              <span class="badge badge-missing">Missing</span>
+              {% endif %}
+
+              {% if marke.value %}
+              <span class="original-value">({{ marke.value }})</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
     {% endfor %}
-
-    <a href="{{ url_for('index') }}">Zurück zur Startseite</a>
-
- 
+  </div>
 </body>
+
 </html>

@@ -1,30 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weichselmarken</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --primary-color: #3b82f6;
+            --card-bg: #ffffff;
+            --section-bg: #ffffff;
+            --border-color: #cbd5e1;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 40px;
             margin: 0;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Container for all sections */
+        .dashboard {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Section Card */
+        .section {
+            background: var(--section-bg);
+            border-radius: 16px;
+            padding: 24px 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .section h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--bg-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .item-card {
+            background-color: var(--bg-color);
+            padding: 1.25rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 60px;
+            border: 1px solid transparent;
+        }
+
+        /* Interactive cards */
+        a.item-card:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        /* Disabled/Static cards */
+        .item-card.disabled {
+            opacity: 0.6;
+            cursor: default;
+            color: #64748b;
+            background-color: #f1f5f9;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
+
 <body>
-    <h1>Meine Sammelgebiete:</h1>
-    <h2>Altdeutschland</h2>
-    <h3>Baden</h3> 
-    <h3>Bayern</h3>
-    <h2>Nachkriegsdeutschland</h2>
-    <h3><a href="{{ url_for('sbz') }}">SBZ</a></h3>
-    <h3><a href="{{ url_for('ampost') }}">AM-POST</a></h3>
-    <h2>USA</h2>
-    <h2>Südafrika</h2>
+    <h1>Meine Sammelgebiete</h1>
+
+    <div class="dashboard">
+
+        <!-- Nachkriegsdeutschland -->
+        <div class="section">
+            <h2>Nachkriegsdeutschland</h2>
+            <div class="grid">
+                <a href="{{ url_for('sbz') }}" class="item-card">SBZ (Sowjetische Zone)</a>
+                <a href="{{ url_for('ampost') }}" class="item-card">AM-POST</a>
+            </div>
+        </div>
+
+        <!-- Altdeutschland -->
+        <div class="section">
+            <h2>Altdeutschland</h2>
+            <div class="grid">
+                <span class="item-card disabled">Baden</span>
+                <span class="item-card disabled">Bayern</span>
+            </div>
+        </div>
+
+        <!-- Others -->
+        <div class="section">
+            <h2>Weltweit</h2>
+            <div class="grid">
+                <span class="item-card disabled">USA</span>
+                <span class="item-card disabled">Südafrika</span>
+            </div>
+        </div>
+
+    </div>
 </body>
+
 </html>
-
-

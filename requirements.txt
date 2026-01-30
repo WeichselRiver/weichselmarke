@@ -1,5 +1,3 @@
 flask
 gunicorn
 polars
-pandas
-pyarrow

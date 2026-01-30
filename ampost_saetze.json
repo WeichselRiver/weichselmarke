@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Amerikanischer Druck",
+        "marken": [
+            {
+                "name": "1",
+                "value": "**;o"
+            },
+            {
+                "name": "2",
+                "value": "**;o"
+            },
+            {
+                "name": "3",
+                "value": "**;o"
+            },
+            {
+                "name": "4",
+                "value": "**;o"
+            },
+            {
+                "name": "5",
+                "value": "**"
+            }
+        ]
+    },
+    {
+        "name": "Plattenfehler",
+        "marken": [
+            {
+                "name": "1",
+                "value": "** I;** II"
+            }
+        ]
+    }
+]
