@@ -25,12 +25,15 @@
         ]
     },
     {
-        "name": "Plattenfehler",
+        "name": "Plattenfehler Amerikanischer Druck",
         "marken": [
             {
-                "name": "1",
-                "value": "** I;** II"
-            }
+                "name": "1I",
+                "value": "**"
+            },{
+                "name": "1II",
+                "value": "**"
+            },
         ]
     }
 ]
